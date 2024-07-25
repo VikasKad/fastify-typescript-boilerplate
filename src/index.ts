@@ -1,10 +1,9 @@
 import fastify from 'fastify';
+import healthCheck from './middlewares/healthCheck';
+
 
 const server = fastify({ logger: true });
-
-server.get('/', async (request, reply) => {
-    return { hello: 'world' };
-});
+server.get('/health', healthCheck);
 
 const start = async () => {
     try {
